@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Fazzry — Analis Kebijakan Publik & Pemerintahan IKN</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+  --navy: #0d1b2a;
+  --navy-mid: #1b2f45;
+  --navy-light: #233d5a;
+  --accent: #1a6b4a;
+  --accent-light: #228f63;
+  --accent-pale: #e6f4ef;
+  --gold: #c9a84c;
+  --text-primary: #0d1b2a;
+  --text-secondary: #4a5568;
+  --text-muted: #718096;
+  --surface: #f8fafc;
+  --white: #ffffff;
+  --border: #e2e8f0;
+  --border-light: #f0f4f8;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text-primary);
+  background: var(--white);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.animate { opacity: 0; }
+.animate.visible {
+  animation: fadeUp 0.65s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+.animate.delay-1 { animation-delay: 0.1s; }
+.animate.delay-2 { animation-delay: 0.2s; }
+.animate.delay-3 { animation-delay: 0.3s; }
+.animate.delay-4 { animation-delay: 0.4s; }
+.animate.delay-5 { animation-delay: 0.5s; }
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(13,27,42,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 0 2rem;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  color: var(--white);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.nav-logo span { color: var(--gold); }
+.nav-links {
+  display: flex;
+  gap: 1.75rem;
+  list-style: none;
+}
+.nav-links a {
+  color: rgba(255,255,255,0.72);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  background: var(--navy);
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 70% at 70% 50%, rgba(26,107,74,0.14) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 50% at 10% 80%, rgba(201,168,76,0.07) 0%, transparent 50%),
+    linear-gradient(135deg, #0d1b2a 0%, #1b2f45 50%, #0d1b2a 100%);
+}
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 2rem 4rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4rem;
+  align-items: center;
+  width: 100%;
+}
+.hero-text {}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(26,107,74,0.2);
+  border: 1px solid rgba(26,107,74,0.4);
+  color: #5fd4a0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.4rem 1rem;
+  border-radius: 100px;
+  margin-bottom: 1.5rem;
+  animation: fadeIn 0.8s ease forwards;
+}
+.hero-badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: #5fd4a0;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #5fd4a0;
+}
+.hero-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+  animation: fadeUp 0.8s 0.1s cubic-bezier(0.22,1,0.36,1) both;
+}
+.hero-name span { color: var(--gold); }
+.hero-title {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-weight: 400;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.02em;
+  animation: fadeUp 0.8s 0.2s cubic-bezier(0.22,1,0.36,1) both;
+}
+.hero-title strong { color: rgba(255,255,255,0.9); font-weight: 500; }
+.hero-divider {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  margin-bottom: 1.5rem;
+  animation: slideRight 0.8s 0.3s cubic-bezier(0.22,1,0.36,1) both;
+}
+.hero-summary {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.8;
+  max-width: 560px;
+  margin-bottom: 2rem;
+  animation: fadeUp 0.8s 0.35s cubic-bezier(0.22,1,0.36,1) both;
+}
+.hero-stats {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  animation: fadeUp 0.8s 0.45s cubic-bezier(0.22,1,0.36,1) both;
+}
+.stat-item {}
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 0.25rem;
+}
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  animation: fadeUp 0.8s 0.5s cubic-bezier(0.22,1,0.36,1) both;
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent);
+  color: white;
+  padding: 0.75rem 1.75rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: all 0.25s;
+  border: 1px solid transparent;
+}
+.btn-primary:hover {
+  background: var(--accent-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(26,107,74,0.35);
+}
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: rgba(255,255,255,0.8);
+  padding: 0.75rem 1.75rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: all 0.25s;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.btn-outline:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.4);
+  transform: translateY(-2px);
+}
+
+/* Hero avatar */
+.hero-avatar-wrap {
+  animation: scaleIn 0.9s 0.3s cubic-bezier(0.22,1,0.36,1) both;
+}
+.hero-avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy-light) 100%);
+  border: 3px solid rgba(201,168,76,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow:
+    0 0 0 8px rgba(201,168,76,0.06),
+    0 24px 64px rgba(0,0,0,0.4);
+}
+.hero-avatar svg {
+  width: 90px;
+  height: 90px;
+  opacity: 0.55;
+}
+.avatar-ring {
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  border: 1px dashed rgba(201,168,76,0.25);
+  animation: spin 20s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── SECTIONS ── */
+section {
+  padding: 5rem 2rem;
+}
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.section-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+.section-line {
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--gold));
+  border-radius: 2px;
+  margin-bottom: 2.5rem;
+}
+
+/* ── ABOUT ── */
+.about-section {
+  background: var(--surface);
+}
+.about-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.about-text {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.85;
+}
+.about-text p { margin-bottom: 1rem; }
+.about-text p:last-child { margin-bottom: 0; }
+.about-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.about-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem;
+  transition: all 0.25s;
+}
+.about-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 20px rgba(26,107,74,0.08);
+  transform: translateY(-3px);
+}
+.about-card-icon {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+.about-card-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+.about-card-text {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ── EXPERIENCE ── */
+.experience-section {
+  background: var(--white);
+}
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 8px; bottom: 8px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent) 0%, var(--gold) 50%, var(--border) 100%);
+  border-radius: 2px;
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 2.5rem;
+  padding-left: 1.5rem;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2.1rem; top: 14px;
+  width: 10px; height: 10px;
+  background: var(--white);
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+}
+.timeline-item:first-child::before {
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(26,107,74,0.15);
+}
+.timeline-card {
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 1.5rem 1.75rem;
+  transition: all 0.25s;
+  border-left: 3px solid var(--border);
+}
+.timeline-card:hover {
+  border-left-color: var(--accent);
+  box-shadow: 0 6px 30px rgba(13,27,42,0.07);
+  transform: translateX(4px);
+}
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.35rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.timeline-role {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1.3;
+}
+.timeline-period {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-pale);
+  padding: 0.25rem 0.75rem;
+  border-radius: 100px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.timeline-org {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+.timeline-duties {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.timeline-duties li {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  padding-left: 1.2rem;
+  position: relative;
+  line-height: 1.6;
+}
+.timeline-duties li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 0.75rem;
+  top: 0.05em;
+}
+.timeline-sub {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+  margin: 0.75rem 0 0.4rem;
+}
+
+/* ── EDUCATION ── */
+.education-section { background: var(--surface); }
+.edu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+.edu-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.75rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s;
+}
+.edu-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--gold));
+}
+.edu-card:hover {
+  box-shadow: 0 8px 32px rgba(13,27,42,0.1);
+  transform: translateY(-4px);
+}
+.edu-degree {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 0.25rem;
+}
+.edu-inst {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 0.1rem;
+}
+.edu-period {
+  font-size: 0.78rem;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.edu-detail {
+  font-size: 0.83rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.3rem;
+}
+.edu-detail::before {
+  content: '◆';
+  font-size: 0.5rem;
+  color: var(--accent);
+}
+
+/* ── SKILLS ── */
+.skills-section { background: var(--white); }
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+.skill-group {
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+.skill-group-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent-pale);
+}
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.skill-tag {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  background: var(--white);
+  border: 1px solid var(--border);
+  padding: 0.35rem 0.8rem;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+.skill-tag:hover {
+  background: var(--accent-pale);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ── CERTIFICATIONS ── */
+.cert-section { background: var(--surface); }
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+.cert-card {
+  background: var(--navy);
+  border-radius: 12px;
+  padding: 1.75rem;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s;
+}
+.cert-card::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 120px; height: 120px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 50%;
+}
+.cert-card::after {
+  content: '';
+  position: absolute;
+  bottom: -20px; left: -20px;
+  width: 80px; height: 80px;
+  background: rgba(201,168,76,0.08);
+  border-radius: 50%;
+}
+.cert-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(13,27,42,0.25);
+}
+.cert-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+.cert-name {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.35rem;
+}
+.cert-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+.cert-issuer {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 0.25rem;
+}
+.cert-date {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.4);
+}
+.cert-num {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.3);
+  margin-top: 0.5rem;
+  font-family: monospace;
+}
+
+/* ── ACHIEVEMENTS ── */
+.achievements-section { background: var(--white); }
+.ach-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+.ach-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  transition: all 0.25s;
+}
+.ach-item:hover {
+  border-color: var(--gold);
+  box-shadow: 0 4px 16px rgba(201,168,76,0.1);
+}
+.ach-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  width: 42px; height: 42px;
+  background: linear-gradient(135deg, rgba(26,107,74,0.1), rgba(201,168,76,0.1));
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+}
+.ach-text {}
+.ach-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 0.2rem;
+}
+.ach-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ── CONTACT ── */
+.contact-section {
+  background: var(--navy);
+  color: white;
+  text-align: center;
+}
+.contact-section .section-label { color: var(--gold); }
+.contact-section .section-title { color: white; }
+.contact-grid {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  text-decoration: none;
+  color: rgba(255,255,255,0.8);
+  font-size: 0.9rem;
+  transition: all 0.25s;
+}
+.contact-item:hover {
+  background: rgba(26,107,74,0.25);
+  border-color: rgba(26,107,74,0.5);
+  color: white;
+  transform: translateY(-3px);
+}
+.contact-item-icon { font-size: 1.1rem; }
+.contact-cta {
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.contact-cta p {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.4);
+}
+
+/* ── FOOTER ── */
+footer {
+  background: #080f17;
+  color: rgba(255,255,255,0.3);
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.78rem;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .hero-content { grid-template-columns: 1fr; gap: 2.5rem; text-align: center; }
+  .hero-avatar-wrap { display: flex; justify-content: center; order: -1; }
+  .hero-stats { justify-content: center; }
+  .hero-cta { justify-content: center; }
+  .hero-divider { margin: 1rem auto; }
+  .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+}
+@media (max-width: 768px) {
+  nav { padding: 0 1rem; }
+  .nav-links { display: none; }
+  section { padding: 3.5rem 1.25rem; }
+  .hero-content { padding: 90px 1.25rem 3rem; }
+  .hero-avatar { width: 150px; height: 150px; }
+  .hero-avatar svg { width: 68px; height: 68px; }
+  .hero-stats { gap: 1.5rem; }
+  .timeline { padding-left: 1.25rem; }
+  .timeline-item { padding-left: 1rem; }
+  .timeline-header { flex-direction: column; gap: 0.5rem; }
+  .timeline-period { align-self: flex-start; }
+  .about-cards { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .about-cards { grid-template-columns: 1fr; }
+  .hero-stats { flex-wrap: wrap; gap: 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">M. <span>Fazzry</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">Profil</a></li>
+    <li><a href="#experience">Pengalaman</a></li>
+    <li><a href="#education">Pendidikan</a></li>
+    <li><a href="#skills">Keahlian</a></li>
+    <li><a href="#certifications">Sertifikat</a></li>
+    <li><a href="#contact">Kontak</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content container">
+    <div class="hero-text">
+      <div class="hero-badge">Analis Kebijakan Publik · BNSP Certified</div>
+      <h1 class="hero-name">Muhammad<br><span>Fazzry</span></h1>
+      <p class="hero-title">
+        <strong>Policy Analyst &amp; Governance Specialist</strong><br>
+        Pemerintahan Daerah Khusus · Ibu Kota Nusantara
+      </p>
+      <div class="hero-divider"></div>
+      <p class="hero-summary">
+        Profesional pemerintahan dengan rekam jejak 7+ tahun dalam analisis kebijakan publik, tata kelola pemerintahan daerah, dan reformasi birokrasi. Terlibat langsung dalam proses pembentukan Pemerintahan Daerah Khusus Ibu Kota Nusantara (Pemdasus IKN) bersama tim lintas kementerian.
+      </p>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">7+</div>
+          <div class="stat-label">Tahun Pengalaman</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">4</div>
+          <div class="stat-label">Provinsi DOB Papua</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">IKN</div>
+          <div class="stat-label">Fokus Utama</div>
+        </div>
+      </div>
+      <div class="hero-cta">
+        <a href="#contact" class="btn-primary">
+          <span>💬</span> Hubungi Saya
+        </a>
+        <a href="#experience" class="btn-outline">
+          <span>↓</span> Lihat Pengalaman
+        </a>
+      </div>
+    </div>
+    <div class="hero-avatar-wrap">
+      <div class="hero-avatar">
+        <div class="avatar-ring"></div>
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="38" r="18" fill="rgba(255,255,255,0.35)"/>
+          <ellipse cx="50" cy="80" rx="30" ry="18" fill="rgba(255,255,255,0.2)"/>
+          <circle cx="50" cy="38" r="14" fill="rgba(255,255,255,0.5)"/>
+          <ellipse cx="50" cy="80" rx="24" ry="14" fill="rgba(255,255,255,0.3)"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="about-inner">
+      <div>
+        <p class="section-label animate">Tentang Saya</p>
+        <h2 class="section-title animate delay-1">Kebijakan Berbasis Bukti<br>untuk Pemerintahan Modern</h2>
+        <div class="section-line animate delay-2"></div>
+        <div class="about-text animate delay-3">
+          <p>Berpengalaman dalam analisis kebijakan publik dan tata kelola pemerintahan daerah dengan latar belakang S1 Ilmu Hukum dari Universitas IBN Khaldun Bogor. Memiliki keahlian mendalam dalam <em>policy review</em>, drafting regulasi, dan analisis kerangka hukum pemerintahan.</p>
+          <p>Saat ini fokus pada isu-isu strategis Pemerintahan Daerah Khusus Ibu Kota Nusantara (IKN), termasuk penataan batas wilayah administratif, pembentukan NSPK pelayanan publik, dan perancangan grand design kelembagaan Pemdasus IKN.</p>
+          <p>Mampu memanfaatkan teknologi AI untuk meningkatkan produktivitas analisis kebijakan, penyusunan ringkasan eksekutif, dan pembuatan bahan pendampingan teknis.</p>
+        </div>
+      </div>
+      <div class="about-cards animate delay-4">
+        <div class="about-card">
+          <div class="about-card-icon">🏛️</div>
+          <div class="about-card-title">Governance</div>
+          <div class="about-card-text">Tata kelola pemerintahan daerah dan reformasi birokrasi nasional</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">📋</div>
+          <div class="about-card-title">Policy Drafting</div>
+          <div class="about-card-text">Penyusunan naskah regulasi, NSPK, Perka, dan dokumen kebijakan</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">🗺️</div>
+          <div class="about-card-title">IKN & Pemdasus</div>
+          <div class="about-card-text">Persiapan Pemerintahan Daerah Khusus Otorita Ibu Kota Nusantara</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">⚖️</div>
+          <div class="about-card-title">Analisis Hukum</div>
+          <div class="about-card-text">Telaah peraturan perundangan dan kerangka hukum pemerintahan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience-section" id="experience">
+  <div class="container">
+    <p class="section-label animate">Pengalaman Kerja</p>
+    <h2 class="section-title animate delay-1">7+ Tahun di Bidang<br>Pemerintahan &amp; Perizinan</h2>
+    <div class="section-line animate delay-2"></div>
+
+    <div class="timeline">
+
+      <!-- Job 1 -->
+      <div class="timeline-item animate delay-1">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div class="timeline-role">Konsultan Individu Bidang Pemerintahan</div>
+            <div class="timeline-period">Jan 2025 – Jun 2026</div>
+          </div>
+          <div class="timeline-org">Persiapan Pemdasus Ibu Kota Nusantara · Tim Bersama Prof. Jimly Asshiddiqie (JSLG)</div>
+          <ul class="timeline-duties">
+            <li>Pengoordinasian perumusan kebijakan bidang pemerintahan IKN</li>
+            <li>Membantu penyusunan kebijakan persiapan penyelenggaraan Pemerintahan Daerah Khusus di IKN</li>
+            <li>Membantu penyusunan kebijakan organisasi pemerintahan daerah dan NSPK pelayanan publik di IKN</li>
+            <li>Membahas dan menganalisis penataan batas, penggabungan, dan penghapusan wilayah desa/kelurahan yang tidak 100% masuk wilayah OIKN</li>
+            <li>Merancang penataan batas wilayah administratif setingkat Kabupaten/Kota dan Mal Pelayanan Publik (MPP) dalam wilayah OIKN</li>
+            <li>Melakukan kajian penyiapan pelaksanaan Pemerintahan Daerah Khusus Otorita IKN dan langkah-langkah persiapan pelaksanaannya</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Job 2 -->
+      <div class="timeline-item animate delay-2">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div class="timeline-role">Tenaga Teknis Sub Profesional Bidang Pemerintahan &amp; Perizinan</div>
+            <div class="timeline-period">Mei 2024 – Des 2025</div>
+          </div>
+          <div class="timeline-org">Otorita Ibu Kota Nusantara (OIKN)</div>
+          <p class="timeline-sub">Perizinan Berusaha &amp; Non Berusaha</p>
+          <ul class="timeline-duties">
+            <li>Pemantauan dan pengawasan kegiatan perizinan di IKN</li>
+            <li>Membuat rancangan peta jalan (grand desain) pelaksanaan kunjungan di IKN</li>
+            <li>Koordinator pelayanan kunjungan masyarakat umum, organisasi, dan pemerintahan ke KIPP IKN</li>
+            <li>Legal drafting PKKPR, PBG, dan SLF bagi pelaku usaha/investor</li>
+            <li>Tim pembuat rancangan Perka OIKN tentang Pengawasan Perizinan dan SOP Perizinan IKN</li>
+          </ul>
+          <p class="timeline-sub">Pemerintahan</p>
+          <ul class="timeline-duties">
+            <li>Membuat rancangan Perka OIKN tentang Daerah Mitra IKN</li>
+            <li>Tim Kerja Grand Design Pemdasus IKN</li>
+            <li>Tim kerja penegasan batas wilayah Desa/Kelurahan yang terdampak Delineasi IKN</li>
+            <li>Tim penggagas Ranperka Daerah Mitra IKN</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Job 3 -->
+      <div class="timeline-item animate delay-3">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div class="timeline-role">Tenaga Lepas Dit. FKKPD</div>
+            <div class="timeline-period">Jan 2019 – Apr 2024</div>
+          </div>
+          <div class="timeline-org">Direktorat Fasilitasi Kelembagaan dan Kepegawaian Perangkat Daerah · Kemendagri</div>
+          <p class="timeline-sub">Penguatan Kelembagaan Perangkat Daerah</p>
+          <ul class="timeline-duties">
+            <li>Restrukturisasi dan sinkronisasi organisasi daerah; asistensi teknis pembentukan OPD</li>
+            <li>Pengendalian dan evaluasi kinerja kelembagaan daerah</li>
+          </ul>
+          <p class="timeline-sub">Transformasi Birokrasi &amp; Digitalisasi</p>
+          <ul class="timeline-duties">
+            <li>Tim Konsultan E-Mutasi (SIMUDAH): asistensi, verifikasi, dan transformasi pelayanan mutasi PNS antar-daerah secara digital dan terintegrasi</li>
+            <li>Tim Penyetaraan Jabatan Reformasi Birokrasi Nasional: memfasilitasi pengalihan jabatan struktural (Eselon III &amp; IV) menjadi jabatan fungsional di seluruh Indonesia</li>
+          </ul>
+          <p class="timeline-sub">Daerah Otonom Baru Papua</p>
+          <ul class="timeline-duties">
+            <li>Terlibat aktif dalam Tim Pembentukan 4 Provinsi Papua (Papua Selatan, Papua Tengah, Papua Pegunungan, Papua Barat Daya): penyusunan SOTK perdana dan manajemen transisi kepegawaian</li>
+          </ul>
+          <p class="timeline-sub">Administrasi Pemerintahan</p>
+          <ul class="timeline-duties">
+            <li>Mengelola tim administrasi persuratan pemerintahan Provinsi/Kabupaten/Kota bidang kelembagaan dan kepegawaian perangkat daerah</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="education-section" id="education">
+  <div class="container">
+    <p class="section-label animate">Pendidikan</p>
+    <h2 class="section-title animate delay-1">Latar Belakang Akademis</h2>
+    <div class="section-line animate delay-2"></div>
+    <div class="edu-grid">
+      <div class="edu-card animate delay-3">
+        <div class="edu-degree">S1 Ilmu Hukum</div>
+        <div class="edu-inst">Universitas IBN Khaldun Bogor</div>
+        <div class="edu-period">Juli 2014 – Agustus 2018</div>
+        <div class="edu-detail">IPK 3.50 / 4.00</div>
+        <div class="edu-detail">Penerima Beasiswa Prestasi Pemprov Jawa Barat (2016)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="container">
+    <p class="section-label animate">Keahlian</p>
+    <h2 class="section-title animate delay-1">Kompetensi &amp; Keahlian</h2>
+    <div class="section-line animate delay-2"></div>
+    <div class="skills-grid">
+      <div class="skill-group animate delay-1">
+        <div class="skill-group-title">Analisis &amp; Kebijakan</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Analisis Kebijakan Publik</span>
+          <span class="skill-tag">Policy Review &amp; Drafting</span>
+          <span class="skill-tag">Analisis Peraturan Perundangan</span>
+          <span class="skill-tag">Analisis Kerangka Hukum</span>
+          <span class="skill-tag">Kebijakan Berbasis Bukti</span>
+        </div>
+      </div>
+      <div class="skill-group animate delay-2">
+        <div class="skill-group-title">Pemerintahan &amp; Tata Kelola</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Public Administration</span>
+          <span class="skill-tag">Governance</span>
+          <span class="skill-tag">Reformasi Birokrasi</span>
+          <span class="skill-tag">Pemdasus IKN</span>
+          <span class="skill-tag">Pemerintahan Daerah</span>
+          <span class="skill-tag">Perizinan Berusaha</span>
+        </div>
+      </div>
+      <div class="skill-group animate delay-3">
+        <div class="skill-group-title">Komunikasi &amp; Penulisan</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Naskah Dinas</span>
+          <span class="skill-tag">Ringkasan Eksekutif</span>
+          <span class="skill-tag">Briefing Material</span>
+          <span class="skill-tag">Penulisan Kebijakan</span>
+          <span class="skill-tag">Audit Media &amp; Informasi</span>
+        </div>
+      </div>
+      <div class="skill-group animate delay-4">
+        <div class="skill-group-title">Teknologi &amp; Produktivitas</div>
+        <div class="skill-tags">
+          <span class="skill-tag">AI Tools</span>
+          <span class="skill-tag">Microsoft Word</span>
+          <span class="skill-tag">Microsoft Excel</span>
+          <span class="skill-tag">Microsoft PowerPoint</span>
+          <span class="skill-tag">Digital Collaboration</span>
+        </div>
+      </div>
+      <div class="skill-group animate delay-5">
+        <div class="skill-group-title">Soft Skills</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Teamwork</span>
+          <span class="skill-tag">Leadership Rapat</span>
+          <span class="skill-tag">Detail-Oriented</span>
+          <span class="skill-tag">Problem Solving</span>
+          <span class="skill-tag">Adaptif</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="cert-section" id="certifications">
+  <div class="container">
+    <p class="section-label animate">Sertifikasi</p>
+    <h2 class="section-title animate delay-1">Sertifikat &amp; Kompetensi Resmi</h2>
+    <div class="section-line animate delay-2"></div>
+    <div class="cert-grid">
+      <div class="cert-card animate delay-3">
+        <div class="cert-icon">🏅</div>
+        <div class="cert-name">Sertifikat Kompetensi Kerja</div>
+        <div class="cert-title">Analis Kebijakan Publik / Public Policy Analysis</div>
+        <div class="cert-issuer">Badan Nasional Sertifikasi Profesi (BNSP)</div>
+        <div class="cert-date">Maret 2025</div>
+        <div class="cert-num">No: 7200.2422.6.13816254.2025</div>
+      </div>
+      <div class="cert-card animate delay-4">
+        <div class="cert-icon">⚖️</div>
+        <div class="cert-name">Sertifikat Pendidikan</div>
+        <div class="cert-title">Pendidikan Khusus Profesi Advokat</div>
+        <div class="cert-issuer">Dewan Pengacara Nasional Indonesia</div>
+        <div class="cert-date">Juli 2023</div>
+        <div class="cert-num">No: 5093/PKPA.02/DPN-INDONESIA/VII/23</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="achievements-section">
+  <div class="container">
+    <p class="section-label animate">Pencapaian</p>
+    <h2 class="section-title animate delay-1">Kontribusi &amp; Pencapaian Utama</h2>
+    <div class="section-line animate delay-2"></div>
+    <div class="ach-grid">
+      <div class="ach-item animate delay-1">
+        <div class="ach-icon">🏙️</div>
+        <div class="ach-text">
+          <div class="ach-title">Tim Pemdasus IKN (Prof. Jimly)</div>
+          <div class="ach-desc">Bagian dari tim kerja strategis persiapan Pemerintahan Daerah Khusus IKN bersama JSLG</div>
+        </div>
+      </div>
+      <div class="ach-item animate delay-2">
+        <div class="ach-icon">🗺️</div>
+        <div class="ach-text">
+          <div class="ach-title">Penataan Wilayah OIKN</div>
+          <div class="ach-desc">Terlibat dalam analisis dan perancangan batas wilayah administratif desa/kelurahan terdampak delineasi IKN</div>
+        </div>
+      </div>
+      <div class="ach-item animate delay-3">
+        <div class="ach-icon">🏔️</div>
+        <div class="ach-text">
+          <div class="ach-title">Pembentukan 4 Provinsi Papua</div>
+          <div class="ach-desc">Berkontribusi dalam tim pembentukan Papua Selatan, Papua Tengah, Papua Pegunungan, dan Papua Barat Daya</div>
+        </div>
+      </div>
+      <div class="ach-item animate delay-4">
+        <div class="ach-icon">💻</div>
+        <div class="ach-text">
+          <div class="ach-title">Tim Konsultan E-Mutasi (SIMUDAH)</div>
+          <div class="ach-desc">Transformasi pelayanan mutasi PNS antar-daerah secara digital, transparan, dan terintegrasi</div>
+        </div>
+      </div>
+      <div class="ach-item animate delay-5">
+        <div class="ach-icon">🔄</div>
+        <div class="ach-text">
+          <div class="ach-title">Reformasi Birokrasi Nasional</div>
+          <div class="ach-desc">Tim penyetaraan jabatan Eselon III &amp; IV menjadi jabatan fungsional di seluruh Indonesia</div>
+        </div>
+      </div>
+      <div class="ach-item animate delay-1">
+        <div class="ach-icon">🎓</div>
+        <div class="ach-text">
+          <div class="ach-title">Beasiswa Prestasi Pemprov Jabar</div>
+          <div class="ach-desc">Penerima Beasiswa Prestasi dari Pemerintah Provinsi Jawa Barat selama 1 semester (2016)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <p class="section-label animate">Kontak</p>
+    <h2 class="section-title animate delay-1">Mari Terhubung</h2>
+    <div class="section-line animate delay-2" style="margin: 0 auto 1rem;"></div>
+    <p class="animate delay-3" style="color:rgba(255,255,255,0.55); max-width:520px; margin:0 auto; font-size:0.95rem;">
+      Terbuka untuk diskusi kebijakan, kolaborasi riset pemerintahan, atau konsultasi terkait Pemdasus IKN dan tata kelola daerah.
+    </p>
+    <div class="contact-grid animate delay-4">
+      <a href="mailto:muhammadfazzry97@gmail.com" class="contact-item">
+        <span class="contact-item-icon">✉️</span>
+        muhammadfazzry97@gmail.com
+      </a>
+      <a href="tel:+6282299473147" class="contact-item">
+        <span class="contact-item-icon">📱</span>
+        0822-9947-3147
+      </a>
+      <div class="contact-item" style="cursor:default;">
+        <span class="contact-item-icon">📍</span>
+        Bogor, Jawa Barat, Indonesia
+      </div>
+    </div>
+    <div class="contact-cta animate delay-5">
+      <p>© 2026 Muhammad Fazzry · Analis Kebijakan Publik &amp; Governance Specialist</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Dibuat sebagai profil profesional digital · Muhammad Fazzry · 2026
+</footer>
+
+<script>
+// Intersection Observer for scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+
+// Smooth nav highlight
+const navLinks = document.querySelectorAll('.nav-links a');
+const sections = document.querySelectorAll('section[id]');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 80) current = s.getAttribute('id');
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + current
+      ? 'var(--gold)'
+      : 'rgba(255,255,255,0.72)';
+  });
+});
+</script>
+</body>
+</html>
